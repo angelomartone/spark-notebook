@@ -11,6 +11,9 @@ import notebook.NBSerializer.Metadata
 import notebook.io.Version
 import notebook.server._
 import notebook.{GenericFile, NotebookResource, Repository, _}
+import org.pac4j.core.config.Config
+import org.pac4j.http.client.indirect.FormClient
+import org.pac4j.http.credentials.authenticator.test.SimpleTestUsernamePasswordAuthenticator
 import play.api.Play.current
 import play.api._
 import play.api.http.HeaderNames
@@ -77,6 +80,14 @@ object Application extends Controller {
 
   //  TODO: Ugh...
   val terminals_available = false.toString // TODO
+
+  def loginForm = Action { implicit request =>
+    // FIXME: pac4j config should be injected
+    // val formClient = config.findClient("FormClient").asInstanceOf[FormClient]
+    // callbackUrl = formClient.getCallbackUrl
+    val callbackUrl = "/callback?client_name=FormClient"
+    Ok(views.html.loginForm.render(callbackUrl))
+  }
 
   def configTree() = Action {
     Ok(Json.obj())

@@ -50,6 +50,14 @@ object Dependencies {
     "com.typesafe.play" %% "play-json" % "2.5.15" withSources() excludeAll(playExclusions: _*)
   ) ++ customJacksonScala
 
+  val pac4jVersion = "2.0.0"
+  // see https://github.com/pac4j/play-pac4j-scala-demo/blob/20ccf821bc557347ca2e555fb1c85d4afea92366/build.sbt#L9-L29
+  // FIXME: Use snapshot and add kerberos too
+  val pac4jSecurity = Seq(
+    "org.pac4j" % "play-pac4j" % "3.0.0",
+    "org.pac4j" % "pac4j-http" % pac4jVersion
+  )
+
   val rxScala = "io.reactivex" %% "rxscala" % "0.22.0"
 
   val defaultHadoopVersion = sys.props.getOrElse("hadoop.version", "2.7.3")

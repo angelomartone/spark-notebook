@@ -199,6 +199,8 @@ dependencyOverrides += guava
 sharedSettings
 
 libraryDependencies ++= playDeps
+libraryDependencies ++= pac4jSecurity
+
 libraryDependencies += scalaTest
 
 // P.S. Using static controllers with the static routes generator is not deprecated,
